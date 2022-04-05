@@ -8,6 +8,9 @@ if BOARD_STM32F746G_DISCO
 config BOARD
 	default "stm32f746g_disco"
 
+config KSCAN
+	default y if DISPLAY
+
 if NETWORKING
 
 config NET_L2_ETHERNET
@@ -27,5 +30,10 @@ endif # KSCAN
 
 config DISK_DRIVER_SDMMC
 	default y if DISK_DRIVERS
+
+# MEMC needs to be enabled in order to store
+# display buffer to external SDRAM connected to FMC
+config MEMC
+	default y if DISPLAY
 
 endif # BOARD_STM32F746G_DISCO
